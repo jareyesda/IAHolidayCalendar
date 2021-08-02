@@ -3,6 +3,7 @@ import Cocoa
 var greeting = "Hello, playground"
 
 let selectedDate = Date()
+var totalSquares = [String]()
 
 class CalendarManager {
     
@@ -50,8 +51,40 @@ class CalendarManager {
     
 }
 
-print(CalendarManager().firstOfMonth(date: selectedDate))
-print(CalendarManager().firstOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
-print(CalendarManager().dayOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
-print(CalendarManager().weekDay(date: selectedDate))
+//print(CalendarManager().firstOfMonth(date: selectedDate))
+//print(CalendarManager().firstOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
+//print(CalendarManager().dayOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
+//print(CalendarManager().weekDay(date: selectedDate))
 
+func setMonthView() {
+    // Reset data
+    totalSquares.removeAll()
+    
+    // Getting month data
+    let daysInMonth = CalendarManager().daysInMonth(date: selectedDate)
+    let firstDayOfMonth = CalendarManager().firstOfMonth(date: selectedDate)
+    let startingSpaces = CalendarManager().weekDay(date: firstDayOfMonth)
+    print(startingSpaces)
+    
+    var count: Int = 1
+    
+    // Creating array to populate calendar days
+    while(count <= 42) {
+        // We are using 42 because there are 42 squares in a calendar's month
+        if count <= startingSpaces || count - startingSpaces > daysInMonth {
+            totalSquares.append("")
+        } else {
+            totalSquares.append(String(count - startingSpaces))
+        }
+        
+        count += 1
+    }
+    
+}
+
+setMonthView()
+print(totalSquares)
+print()
+print(totalSquares.count)
+print()
+print(CalendarManager().daysInMonth(date: selectedDate))

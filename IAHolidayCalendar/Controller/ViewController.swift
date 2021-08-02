@@ -17,27 +17,85 @@ class ViewController: UIViewController {
     var selectedDate = Date()
     var totalSquares = [String]()
     
+    //MARK: - ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        calendar.delegate = self
+        calendar.dataSource = self
+        
         setCellUI()
+        setMonthView()
     }
     
+    //MARK: - CollectioView UI Configuration
     func setCellUI() {
         let width = (calendar.frame.size.width - 2) / 8
         let height = (calendar.frame.size.height - 2) / 8
         
         let layout = calendar.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: height)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+    }
+    //MARK: - Getting data for calendar population
+    func setMonthView() {
+        // Reset data
+        totalSquares.removeAll()
+        
+        // Getting month data
+        let daysInMonth = CalendarManager().daysInMonth(date: selectedDate)
+        let firstDayOfMonth = CalendarManager().firstOfMonth(date: selectedDate)
+        let startingSpaces = CalendarManager().weekDay(date: firstDayOfMonth)
+        
+        var count: Int = 1
+        
+        // Creating array to populate calendar days
+        while(count <= 42) {
+            // We are using 42 because there are 42 squares in a calendar's month
+            if count <= startingSpaces || count - startingSpaces > daysInMonth {
+                totalSquares.append("")
+            } else {
+                totalSquares.append(String(count - startingSpaces))
+            }
+            
+            count += 1
+        }
+        
+        monthLabel.text = CalendarManager().monthString(date: selectedDate) + " " + CalendarManager().yearString(date: selectedDate)
+        
+        calendar.reloadData()
+        
     }
     
-    @IBAction func nextMonth(_ sender: UIButton) {
+    //MARK: - View next month button
+    @IBAction func nextMonth(_ sender: Any) {
+        selectedDate = CalendarManager().addMonth(date: selectedDate)
+        setMonthView()
     }
     
-    @IBAction func previousMonth(_ sender: UIButton) {
+    //MARK: - View previous month button
+    @IBAction func previousMonth(_ sender: Any) {
+        selectedDate = CalendarManager().subtractMonth(date: selectedDate)
+        setMonthView()
     }
+    
+}
+
+//MARK: - Collection View Delegate Methods
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return totalSquares.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
+        
+        cell.dayLabel.text = totalSquares[indexPath.row]
+        
+        return cell
+    }
+    
     
 }
 
