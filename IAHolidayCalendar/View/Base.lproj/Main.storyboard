@@ -80,6 +80,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4K-cf-d79">
                                 <rect key="frame" x="20" y="135.5" width="101.5" height="22"/>
                                 <state key="normal" title="Button" image="arrowshape.turn.up.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="previousMonth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rRK-AV-Nvx"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jmI-P6-GVl">
                                 <rect key="frame" x="0.0" y="235" width="414" height="627"/>
@@ -139,6 +142,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pC1-Ax-8nm"/>
+                    <connections>
+                        <outlet property="calendar" destination="jmI-P6-GVl" id="LM6-u3-eN7"/>
+                        <outlet property="monthLabel" destination="ZBf-IE-ftT" id="jTj-Tt-Q1v"/>
+                        <outlet property="nextMonthButton" destination="XEw-ji-dwh" id="v7T-XK-YGN"/>
+                        <outlet property="previousMonthButton" destination="Z4K-cf-d79" id="aja-K6-VYr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

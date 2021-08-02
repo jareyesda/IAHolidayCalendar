@@ -14,6 +14,7 @@
 		20A8D08426B83891004D5E4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A8D08326B83891004D5E4E /* Assets.xcassets */; };
 		20A8D08726B83891004D5E4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A8D08526B83891004D5E4E /* LaunchScreen.storyboard */; };
 		20A8D08F26B83ADB004D5E4E /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D08E26B83ADB004D5E4E /* CalendarCell.swift */; };
+		20A8D09126B843BF004D5E4E /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D09026B843BF004D5E4E /* CalendarManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		20A8D08626B83891004D5E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20A8D08826B83891004D5E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20A8D08E26B83ADB004D5E4E /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		20A8D09026B843BF004D5E4E /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +62,39 @@
 			children = (
 				20A8D07A26B8388E004D5E4E /* AppDelegate.swift */,
 				20A8D07C26B8388E004D5E4E /* SceneDelegate.swift */,
-				20A8D07E26B8388E004D5E4E /* ViewController.swift */,
-				20A8D08026B8388E004D5E4E /* Main.storyboard */,
-				20A8D08E26B83ADB004D5E4E /* CalendarCell.swift */,
+				20A8D09326B843DB004D5E4E /* Model */,
+				20A8D09226B843D1004D5E4E /* View */,
+				20A8D09426B843E8004D5E4E /* Controller */,
 				20A8D08326B83891004D5E4E /* Assets.xcassets */,
-				20A8D08526B83891004D5E4E /* LaunchScreen.storyboard */,
 				20A8D08826B83891004D5E4E /* Info.plist */,
 			);
 			path = IAHolidayCalendar;
+			sourceTree = "<group>";
+		};
+		20A8D09226B843D1004D5E4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20A8D08026B8388E004D5E4E /* Main.storyboard */,
+				20A8D08526B83891004D5E4E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20A8D09326B843DB004D5E4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20A8D09026B843BF004D5E4E /* CalendarManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20A8D09426B843E8004D5E4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20A8D07E26B8388E004D5E4E /* ViewController.swift */,
+				20A8D08E26B83ADB004D5E4E /* CalendarCell.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +171,7 @@
 				20A8D07B26B8388E004D5E4E /* AppDelegate.swift in Sources */,
 				20A8D07D26B8388E004D5E4E /* SceneDelegate.swift in Sources */,
 				20A8D08F26B83ADB004D5E4E /* CalendarCell.swift in Sources */,
+				20A8D09126B843BF004D5E4E /* CalendarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
