@@ -18,6 +18,7 @@
 		20A8D09626B856B4004D5E4E /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D09526B856B4004D5E4E /* DateModel.swift */; };
 		20A8D09826B858EF004D5E4E /* HolidayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D09726B858EF004D5E4E /* HolidayData.swift */; };
 		20A8D09B26B85919004D5E4E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D09A26B85919004D5E4E /* NetworkManager.swift */; };
+		20A8D09D26B86117004D5E4E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A8D09C26B86117004D5E4E /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		20A8D09526B856B4004D5E4E /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		20A8D09726B858EF004D5E4E /* HolidayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayData.swift; sourceTree = "<group>"; };
 		20A8D09A26B85919004D5E4E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		20A8D09C26B86117004D5E4E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				20A8D07E26B8388E004D5E4E /* ViewController.swift */,
 				20A8D08E26B83ADB004D5E4E /* CalendarCell.swift */,
+				20A8D09C26B86117004D5E4E /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A8D09D26B86117004D5E4E /* DetailViewController.swift in Sources */,
 				20A8D07F26B8388E004D5E4E /* ViewController.swift in Sources */,
 				20A8D07B26B8388E004D5E4E /* AppDelegate.swift in Sources */,
 				20A8D07D26B8388E004D5E4E /* SceneDelegate.swift in Sources */,

@@ -139,5 +139,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if holidays[indexPath.item]?.count != 0 {
+            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
+                vc.name = String(holidays[indexPath.item]![0]!.name)
+                
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        
+    }
+    
 }
 

@@ -152,11 +152,45 @@
                     <connections>
                         <outlet property="calendar" destination="jmI-P6-GVl" id="LM6-u3-eN7"/>
                         <outlet property="monthLabel" destination="ZBf-IE-ftT" id="jTj-Tt-Q1v"/>
+                        <segue destination="FMw-Ma-t7E" kind="show" id="c1h-3y-sbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="114.50892857142857"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="XtT-ZP-E40">
+            <objects>
+                <viewController storyboardIdentifier="Detail" id="FMw-Ma-t7E" customClass="DetailViewController" customModule="IAHolidayCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gvy-kc-Zed">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="To8-hE-o1t">
+                                <rect key="frame" x="0.0" y="433" width="414" height="30"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d7D-4g-ujp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="To8-hE-o1t" firstAttribute="centerY" secondItem="Gvy-kc-Zed" secondAttribute="centerY" id="Ccu-XR-OjU"/>
+                            <constraint firstItem="To8-hE-o1t" firstAttribute="centerX" secondItem="Gvy-kc-Zed" secondAttribute="centerX" id="I9r-hm-gcG"/>
+                            <constraint firstItem="To8-hE-o1t" firstAttribute="leading" secondItem="d7D-4g-ujp" secondAttribute="leading" id="cFT-H8-Czf"/>
+                            <constraint firstItem="d7D-4g-ujp" firstAttribute="trailing" secondItem="To8-hE-o1t" secondAttribute="trailing" id="qmg-kg-O2h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tz6-Zf-ZfK"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="To8-hE-o1t" id="9nZ-vq-igC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fje-Pn-MED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8rZ-fu-mLU">
