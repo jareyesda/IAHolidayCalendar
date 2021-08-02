@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     //MARK: - Calendar CollectionView Population Components
     var selectedDate = Date()
     var totalSquares = [String]()
+    var datesInMonth = [DateModel?]()
     
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
@@ -61,9 +62,26 @@ class ViewController: UIViewController {
             
             count += 1
         }
+        //MARK: - Creating an array of dates from the current month
+        // The array created here will contain the arguments that will be passed to our web API
+        for i in 0...(totalSquares.count - 1) {
+            if totalSquares[i] != "" {
+                
+                datesInMonth.append(
+                    DateModel(
+                        year: CalendarManager().yearString(date: self.selectedDate),
+                        month: CalendarManager().monthString(date: self.selectedDate),
+                        day: totalSquares[i]
+                    )
+                )
+                
+            } else {
+                datesInMonth.append(nil)
+            }
+        }
         
+        print(datesInMonth)
         monthLabel.text = CalendarManager().monthString(date: selectedDate) + " " + CalendarManager().yearString(date: selectedDate)
-        
         calendar.reloadData()
         
     }
@@ -95,7 +113,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         return cell
     }
-    
     
 }
 

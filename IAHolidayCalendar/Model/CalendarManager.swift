@@ -25,6 +25,12 @@ class CalendarManager {
         return dateFormatter.string(from: date)
     }
     
+    func monthNumber(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M"
+        return dateFormatter.string(from: date)
+    }
+    
     func yearString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy"
