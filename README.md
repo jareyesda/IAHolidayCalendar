@@ -13,6 +13,8 @@ When the user opens the app, viewDidLoad() will load the current month's and yea
 ### Holidays
 Since my calendar is populated by a string of 42 elements. I will create an array of Holidays of the same length to ease the referencing. When there is a holiday present, I will change the calendar's cell's background color.
 
+The data will be gathered using Abstract API's Holiday API (the example API given on the challenge's PDF)
+
 
 
 ## Networking Logic
