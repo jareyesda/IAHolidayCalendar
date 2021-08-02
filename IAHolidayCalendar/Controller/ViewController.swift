@@ -14,9 +14,15 @@ class ViewController: UIViewController {
     @IBOutlet var calendar: UICollectionView!
     
     //MARK: - Calendar CollectionView Population Components
+    // Current date (modified when month is changed)
     var selectedDate = Date()
+    // Array that populates the calendar cells
     var totalSquares = [String]()
+    
+    // Arguments that will be passed in network call
     var datesInMonth = [DateModel?]()
+    // Holidays present in the selected month
+    var holidays = [Holiday?]()
     
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
@@ -43,6 +49,8 @@ class ViewController: UIViewController {
     func setMonthView() {
         // Reset data
         totalSquares.removeAll()
+        datesInMonth.removeAll()
+        holidays.removeAll()
         
         // Getting month data
         let daysInMonth = CalendarManager().daysInMonth(date: selectedDate)
@@ -70,7 +78,7 @@ class ViewController: UIViewController {
                 datesInMonth.append(
                     DateModel(
                         year: CalendarManager().yearString(date: self.selectedDate),
-                        month: CalendarManager().monthString(date: self.selectedDate),
+                        month: CalendarManager().monthNumber(date: self.selectedDate),
                         day: totalSquares[i]
                     )
                 )
@@ -80,7 +88,18 @@ class ViewController: UIViewController {
             }
         }
         
-        print(datesInMonth)
+        //MARK: - Creating an array of holidays from the current month
+        for date in datesInMonth {
+            if date == nil {
+                holidays.append(nil)
+            } else {
+                let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
+                holidays.append(NetworkManager().parse(json: jsonData))
+            }
+        }
+        
+        //MARK: - Events on function completion
+        print(holidays)
         monthLabel.text = CalendarManager().monthString(date: selectedDate) + " " + CalendarManager().yearString(date: selectedDate)
         calendar.reloadData()
         
@@ -110,6 +129,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCell
         
         cell.dayLabel.text = totalSquares[indexPath.row]
+        
+        if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
+            cell.backgroundColor = .red
+        } else {
+            cell.backgroundColor = .white
+        }
         
         return cell
     }
