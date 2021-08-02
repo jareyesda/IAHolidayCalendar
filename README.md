@@ -6,3 +6,5 @@ First, I will create the calendar UI (Using UIKit) and work on the calendar logi
 
 ## Calendar UI Logic
 Because of a traditional calendar's grid pattern, I will use a UICollectionView to create the monthly calendar. Traditional calendars have 42 squares (in the case that a month starts and ends on a Saturday) - so I will populate my UICollectionView cells using a string array of 42 elements. The elements that do not correspond to the month's days will be populated with an empty string, whereas the rest will have their days respectively.
+
+When the user opens the app, viewDidLoad() will load the current month's and year's calendar.
