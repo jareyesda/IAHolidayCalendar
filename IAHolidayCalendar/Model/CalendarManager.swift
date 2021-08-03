@@ -37,6 +37,12 @@ class CalendarManager {
         return dateFormatter.string(from: date)
     }
     
+    func yearNumber(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "Y"
+        return dateFormatter.string(from: date)
+    }
+    
     func daysInMonth(date: Date) -> Int {
         let days = calendar.range(of: .day, in: .month, for: date)!
         return days.count

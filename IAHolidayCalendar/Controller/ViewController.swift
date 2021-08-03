@@ -22,7 +22,10 @@ class ViewController: UIViewController {
     // Arguments that will be passed in network call
     var datesInMonth = [DateModel?]()
     // Holidays present in the selected month
+    // API 1)
     var holidays = [Holiday?]()
+    // API 2)
+//    var holidaysInMonth = [HolidayElement]()
     
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
@@ -50,6 +53,7 @@ class ViewController: UIViewController {
         // Reset data
         totalSquares.removeAll()
         datesInMonth.removeAll()
+        // API 1)
         holidays.removeAll()
         
         // Getting month data
@@ -89,6 +93,7 @@ class ViewController: UIViewController {
         }
         
         //MARK: - Creating an array of holidays from the current month
+        // API 1)
         for date in datesInMonth {
             if date == nil {
                 holidays.append(nil)
@@ -98,8 +103,16 @@ class ViewController: UIViewController {
             }
         }
         
+        // API 2)
+//        NetworkManager().getHolidays(year: (CalendarManager().yearNumber(date: self.selectedDate)), month: CalendarManager().monthNumber(date: self.selectedDate)) { [self] (holidays) in
+//            print("Current selected month is: \(CalendarManager().monthNumber(date: self.selectedDate))")
+//            if let holidays = holidays {
+//                holidaysInMonth = holidays
+//                print("Holidays in the month are: \(holidaysInMonth)")
+//            }
+//        }
+        
         //MARK: - Events on function completion
-        print(holidays)
         monthLabel.text = CalendarManager().monthString(date: selectedDate) + " " + CalendarManager().yearString(date: selectedDate)
         calendar.reloadData()
         
@@ -130,25 +143,35 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.dayLabel.text = totalSquares[indexPath.row]
         
+        // API 1)
         if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
             cell.backgroundColor = .red
         } else {
             cell.backgroundColor = .white
         }
         
+        // API 2)
+//        for holiday in holidaysInMonth {
+//            if String(holiday.date.datetime.day) == totalSquares[indexPath.row] {
+//                cell.backgroundColor = .red
+//            } else {
+//                cell.backgroundColor = .white
+//            }
+//        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        // API 1)
         if holidays[indexPath.item]?.count != 0 {
             if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
                 vc.name = String(holidays[indexPath.item]![0]!.name)
-                
+
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
     }
     
 }

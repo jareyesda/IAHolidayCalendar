@@ -153,3 +153,27 @@ struct NetworkManager {
 }
 
 print(NetworkManager().parse(json: NetworkManager().fetchHolidayJSON(year: "2020", month: "1", day: "1")))
+
+let holidayDates = ["2"]
+
+print(totalSquares)
+
+func getHolidayPresentArray(_ array: [String], from: [String]) -> [String] {
+    var retVal = [String]()
+    for square in totalSquares {
+        if from.contains(square) {
+            retVal.append(square)
+        } else {
+            retVal.append("")
+        }
+    }
+    return retVal
+}
+
+print(getHolidayPresentArray(totalSquares, from: holidayDates))
+
+
+
+
+
+
