@@ -18,3 +18,6 @@ The data will be gathered using Abstract API's Holiday API (the example API give
 
 
 ## Networking Logic
+A class will handle all of the networking logic. It contains a function that fetches the data from the Web API's url. The other function parses the response and returns it.
+
+Because I am using the free version of the Abstract API's Holiday API, I am limited to making a request on specific dates. This is unwanted because I am forced to make a network request for every date in the month. This doesn't make the UI as fluid as it should be and adds stress on the backend. I will need to find another API that will return all holidays for the given month.
