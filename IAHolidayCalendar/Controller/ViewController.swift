@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     var holidays = [Holiday?]()
     // API 2)
 //    var holidaysInMonth = [HolidayElement]()
+//    var holidayDaysInMonth = [String]()
     
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
@@ -106,9 +107,14 @@ class ViewController: UIViewController {
         // API 2)
 //        NetworkManager().getHolidays(year: (CalendarManager().yearNumber(date: self.selectedDate)), month: CalendarManager().monthNumber(date: self.selectedDate)) { [self] (holidays) in
 //            print("Current selected month is: \(CalendarManager().monthNumber(date: self.selectedDate))")
+//            var retVal = [String]()
 //            if let holidays = holidays {
 //                holidaysInMonth = holidays
 //                print("Holidays in the month are: \(holidaysInMonth)")
+//                for holiday in holidays {
+//                    retVal.append(String(holiday.date.datetime.day))
+//                }
+//                holidayDaysInMonth = retVal
 //            }
 //        }
         
@@ -151,12 +157,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         
         // API 2)
-//        for holiday in holidaysInMonth {
-//            if String(holiday.date.datetime.day) == totalSquares[indexPath.row] {
-//                cell.backgroundColor = .red
-//            } else {
-//                cell.backgroundColor = .white
-//            }
+//        if holidayDaysInMonth.contains(totalSquares[indexPath.row]) {
+//            cell.dayLabel.text = totalSquares[indexPath.row]
+//            cell.backgroundColor = .red
+//        } else {
+//            cell.dayLabel.text = totalSquares[indexPath.row]
+//            cell.backgroundColor = .white
+//
 //        }
         
         return cell
