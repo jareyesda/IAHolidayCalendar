@@ -47,7 +47,7 @@ struct NetworkManager {
     
     // API 2)
 //    func getHolidays(year: String, month: String, completion: @escaping ([HolidayElement]?) -> Void) {
-//        let baseURL = "https://calendarific.com/api/v2/holidays?&api_key=78f33ed59d7828b227be7d7aee55f65dcbbaa907&country=US&type=national"
+//        let baseURL = "https://calendarific.com/api/v2/holidays?&api_key=0946619955e383b78419d38e647397a816477e51&country=US&type=national"
 //
 //        guard let url = URL(string: "\(baseURL)&year=\(year)&month=\(month)") else { return }
 //
