@@ -51,10 +51,10 @@ class CalendarManager {
     
 }
 
-//print(CalendarManager().firstOfMonth(date: selectedDate))
-//print(CalendarManager().firstOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
-//print(CalendarManager().dayOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
-//print(CalendarManager().weekDay(date: selectedDate))
+print(CalendarManager().firstOfMonth(date: selectedDate))
+print(CalendarManager().firstOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
+print(CalendarManager().dayOfMonth(date: CalendarManager().addMonth(date: selectedDate)))
+print(CalendarManager().weekDay(date: selectedDate))
 
 func setMonthView() {
     // Reset data

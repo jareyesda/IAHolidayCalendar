@@ -9,9 +9,24 @@ import Foundation
 
 struct NetworkManager {
     
-    let baseURL = "https://holidays.abstractapi.com/v1/?api_key=b8a42ac1698449579eca97ee93f3567f&country=US"
+    //MARK: - API 1
+    let baseURL = "https://holidays.abstractapi.com/v1/?api_key=af4d66a7659e40f081ce25b8e258a9fd&country=US"
     
     // API 1)
+    // Fetching holidays synchronously
+    func fetchHoliday(dates: [DateModel?]) -> [Holiday?] {
+        var holidays = [Holiday?]()
+        for date in dates {
+            if date == nil {
+                holidays.append(nil)
+            } else {
+                let jsonData = fetchHolidayJSON(year: String(describing: date!.year), month: String(describing: date!.month), day: String(describing: date!.day))
+                holidays.append(parse(json: jsonData))
+            }
+        }
+        return holidays
+    }
+    
     // Fetch Data Function
     func fetchHolidayJSON(year: String, month: String, day: String) -> Data {
 
@@ -45,9 +60,27 @@ struct NetworkManager {
 
     }
     
+    // Alternate API 1 Method
+//    func getHolidays(year: String, month: String, day: String, completion: @escaping (Holiday?) -> Void) {
+//        let baseURL = "https://holidays.abstractapi.com/v1/?api_key=b8a42ac1698449579eca97ee93f3567f&country=US&type=national"
+//
+//        guard let url = URL(string: "\(baseURL)&year=\(year)&month=\(month)&day=\(day)") else { return }
+//
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard let data = data else { return }
+//
+//            do {
+//                let jsonData = try? JSONDecoder().decode(Holiday.self, from: data)
+//                completion(jsonData)
+//            }
+//
+//        }.resume()
+//    }
+    
+    //MARK: - API 2
     // API 2)
 //    func getHolidays(year: String, month: String, completion: @escaping ([HolidayElement]?) -> Void) {
-//        let baseURL = "https://calendarific.com/api/v2/holidays?&api_key=0946619955e383b78419d38e647397a816477e51&country=US&type=national"
+//        let baseURL = "https://calendarific.com/api/v2/holidays?&api_key=922bb56cb346a191244196e78d1490591ecca70c&country=US&type=national"
 //
 //        guard let url = URL(string: "\(baseURL)&year=\(year)&month=\(month)") else { return }
 //

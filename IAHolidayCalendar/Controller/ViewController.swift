@@ -28,6 +28,8 @@ class ViewController: UIViewController {
 //    var holidaysInMonth = [HolidayElement]()
 //    var holidayDaysInMonth = [String]()
     
+    private let dispatchQueue = DispatchQueue(label: "Network thread")
+    
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,19 +37,24 @@ class ViewController: UIViewController {
         calendar.delegate = self
         calendar.dataSource = self
         
-        setCellUI()
         setMonthView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setCellUI()
     }
     
     //MARK: - CollectioView UI Configuration
     func setCellUI() {
-        let width = (calendar.frame.size.width - 2) / 8
-        let height = (calendar.frame.size.height - 2) / 8
+        let width = (calendar.frame.size.width) / 7
+        let height = (calendar.frame.size.height) / 7
         
         let layout = calendar.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: height)
         layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 0
     }
     //MARK: - Getting data for calendar population
     func setMonthView() {
@@ -95,14 +102,45 @@ class ViewController: UIViewController {
         
         //MARK: - Creating an array of holidays from the current month
         // API 1)
+        
+        //MARK: - Original method
+//        for date in datesInMonth {
+//            if date == nil {
+//                holidays.append(nil)
+//            } else {
+//                let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
+//                holidays.append(NetworkManager().parse(json: jsonData))
+//            }
+//        }
+        
+        //MARK: - Original method + Async network call
         for date in datesInMonth {
             if date == nil {
                 holidays.append(nil)
             } else {
-                let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
-                holidays.append(NetworkManager().parse(json: jsonData))
+                dispatchQueue.async {
+                    let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
+                    self.holidays.append(NetworkManager().parse(json: jsonData))
+                }
             }
         }
+        
+        //MARK: - New function performed asynchronously
+//        dispatchQueue.async { [self] in
+//            holidays = NetworkManager().fetchHoliday(dates: datesInMonth)
+//        }
+                
+        // Alternate for API 1 that was iffy...
+//        for date in datesInMonth {
+//            if date == nil {
+//                holidays.append(nil)
+//            } else {
+//                NetworkManager().getHolidays(year: date!.year, month: date!.month, day: date!.day) { holiday in
+//                    print("\(String(describing: date)) ---> \(String(describing: holiday))")
+//                    self.holidays.append(holiday)
+//                }
+//            }
+//        }
         
         // API 2)
 //        NetworkManager().getHolidays(year: (CalendarManager().yearNumber(date: self.selectedDate)), month: CalendarManager().monthNumber(date: self.selectedDate)) { [self] (holidays) in
@@ -120,6 +158,7 @@ class ViewController: UIViewController {
         
         //MARK: - Events on function completion
         monthLabel.text = CalendarManager().monthString(date: selectedDate) + " " + CalendarManager().yearString(date: selectedDate)
+        print(holidays)
         calendar.reloadData()
         
     }
@@ -150,11 +189,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.dayLabel.text = totalSquares[indexPath.row]
         
         // API 1)
-        if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
-            cell.backgroundColor = .red
-        } else {
-            cell.backgroundColor = .white
-        }
+//        if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
+//            cell.backgroundColor = .red
+//        } else {
+//            cell.backgroundColor = .white
+//        }
+    
         
         // API 2)
 //        if holidayDaysInMonth.contains(totalSquares[indexPath.row]) {
@@ -165,20 +205,20 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 //            cell.backgroundColor = .white
 //
 //        }
-        
+//
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print(holidays)
         // API 1)
-        if holidays[indexPath.item]?.count != 0 {
-            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
-                vc.name = String(holidays[indexPath.item]![0]!.name)
-
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+//        if holidays[indexPath.item]?.count != 0 {
+//            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
+//                vc.name = String(holidays[indexPath.item]![0]!.name)
+//
+//                navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
     }
     
 }

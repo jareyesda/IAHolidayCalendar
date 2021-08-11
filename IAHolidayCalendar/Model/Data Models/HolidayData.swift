@@ -5,7 +5,7 @@
 
 import Foundation
 
-// MARK: - HolidayElement
+// MARK: - HolidayElement -- API 1
 struct HolidayElement: Codable {
 
     let name, nameLocal, language, holidayDescription: String
@@ -27,9 +27,9 @@ struct HolidayElement: Codable {
 
 typealias Holiday = [HolidayElement?]
 
-//MARK: - Struct for second API
+//MARK: - Holiday -- API 2
 
-//// MARK: - Holiday
+// MARK: - Holiday
 //struct Holiday: Codable {
 //    let meta: Meta
 //    let response: Response
@@ -60,8 +60,8 @@ typealias Holiday = [HolidayElement?]
 //        case country, date, type, locations, states
 //    }
 //}
-//
-//// MARK: - Country
+
+// MARK: - Country
 //struct Country: Codable {
 //    let id: ID
 //    let name: Name
@@ -125,4 +125,4 @@ typealias Holiday = [HolidayElement?]
 //enum StatesEnum: String, Codable {
 //    case all = "All"
 //}
-//
+
