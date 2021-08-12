@@ -114,21 +114,21 @@ class ViewController: UIViewController {
 //        }
         
         //MARK: - Original method + Async network call
-        for date in datesInMonth {
-            if date == nil {
-                holidays.append(nil)
-            } else {
-                dispatchQueue.async {
-                    let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
-                    self.holidays.append(NetworkManager().parse(json: jsonData))
-                }
-            }
-        }
+//        for date in datesInMonth {
+//            if date == nil {
+//                holidays.append(nil)
+//            } else {
+//                dispatchQueue.async {
+//                    let jsonData = NetworkManager().fetchHolidayJSON(year: date!.year, month: date!.month, day: date!.day)
+//                    self.holidays.append(NetworkManager().parse(json: jsonData))
+//                }
+//            }
+//        }
         
         //MARK: - New function performed asynchronously
-//        dispatchQueue.async { [self] in
-//            holidays = NetworkManager().fetchHoliday(dates: datesInMonth)
-//        }
+        dispatchQueue.async { [self] in
+            holidays = NetworkManager().fetchHoliday(dates: datesInMonth)
+        }
                 
         // Alternate for API 1 that was iffy...
 //        for date in datesInMonth {
@@ -189,11 +189,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.dayLabel.text = totalSquares[indexPath.row]
         
         // API 1)
-//        if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
-//            cell.backgroundColor = .red
-//        } else {
-//            cell.backgroundColor = .white
-//        }
+        if holidays.count == 42 {
+            if (holidays[indexPath.row]?.count != 0 && cell.dayLabel.text != "") {
+                cell.backgroundColor = .red
+            } else {
+                cell.backgroundColor = .white
+            }
+        }
+        
     
         
         // API 2)
@@ -210,7 +213,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(holidays)
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~")
         // API 1)
 //        if holidays[indexPath.item]?.count != 0 {
 //            if let vc = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {

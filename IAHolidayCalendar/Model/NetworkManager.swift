@@ -29,35 +29,25 @@ struct NetworkManager {
     
     // Fetch Data Function
     func fetchHolidayJSON(year: String, month: String, day: String) -> Data {
-
         // Arguments needed: &year=XXXX&month=X&day=X where X is a String(Int)
         let urlString = "\(baseURL)&year=\(year)&month=\(month)&day=\(day)"
-
         var dataResponse = Data()
-
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 dataResponse = data
             }
         }
-
         return dataResponse
-
     }
 
     // Parse Data Function
     func parse(json: Data) -> Holiday {
-
         var retVal = Holiday()
-
         let decoder = JSONDecoder()
-
         if let jsonData = try? decoder.decode(Holiday.self, from: json) {
             retVal = jsonData
         }
-
         return retVal
-
     }
     
     // Alternate API 1 Method
